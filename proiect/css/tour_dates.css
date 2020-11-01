@@ -1,0 +1,32 @@
+@font-face
+{
+	font-family:titlul;
+	src:url(fonts/Mechsuit.otf);
+}
+@font-face{
+
+	font-family:nav;
+	src:url(fonts/Motorblock.ttf);
+}
+@font-face{
+
+	font-family:postare;
+	src:url(fonts/Downlink.otf);
+
+}
+.t_post{
+	
+	
+	
+}
+img:hover{
+	
+	border:0px;
+}
+
+.imagine{
+	
+	margin-top:10px;
+	width:600px;
+	
+}

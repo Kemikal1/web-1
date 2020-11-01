@@ -1,0 +1,107 @@
+@font-face
+{
+	font-family:login;
+	src:url(fonts/Alternity.otf);
+}
+@font-face{
+	font-family:login1;
+	src:url(fonts/AIRBORNEGP.ttf);
+}
+
+input[type=text]
+{
+	background-color:black;
+	color:orange;
+	border:2px solid #ffb83b;
+	font-family:postare;
+}
+input[type=submit]
+{
+	margin:5px;
+	background-color:black;
+	color:#4c3e13;
+	font-family:postare;
+	border:3px solid orange;
+}
+input[type=submit]:hover
+{
+	color:orange;
+}
+
+
+.bod{
+	position:relative;
+	background:black;
+	width:100%;
+	height:100%;
+
+}
+.form
+{
+	position:relative;
+	margin-top:40px;
+    color:#bdae95;
+
+
+}
+.log-text{
+	color:#ffb83b;
+	font-family:login;
+	display:absolute;
+	margin-bottom:-25px;
+}
+.cont{
+  top:100px;
+	display:flex;
+  postion:absolute;
+	align-items:center;
+	justify-content:center;
+	flex-direction:column;
+}
+.container
+{
+	display:flex;
+	align-items:center;
+	justify-content:center;
+
+}
+.nume-titlu
+{
+	color:orange;
+	font-size:35px;
+
+
+}
+.log-titlu
+{
+
+
+	font-family:titlul;
+
+
+
+}
+.er
+{
+	position:relative;
+	padding:5px;
+	top:40px;
+	font-size:43px;
+	color:#251f13;
+	text-shadow: -1px 0 #ffb83b, 0 1px #ffb83b, 1px 0 #ffb83b, 0 -1px #ffb83b;
+}
+
+.box {
+  position:relative;
+  width:1000px;
+  height:1000px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.box div {
+  border:2px solid white;
+  width: 100px;
+  height: 100px;
+}

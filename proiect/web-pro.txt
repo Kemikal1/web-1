@@ -1,0 +1,16 @@
+Homepage
+  -link catre celalalte printr-o bara de acces
+  -aici apar toate postarile trupei,update-ri ,etc
+About
+  -pagina despre istoria siteului si ce semnifica
+Tour dates
+  -pagina cu datele si locatiile de concerte pentru trupa
+Bios
+  -pagina cu biografia fiecarui memebru din trupa
+  -fiecare link catre biografia membrilor va avea o imagine si poate o animate pentru 
+   click/mouseover
+Photos
+  -pagina cu diverse fotografii ale trupei si poze de cover art
+Store
+  -pagina unde explica scopul magazinului online si un redirect catre el
+  

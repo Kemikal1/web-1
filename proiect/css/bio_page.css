@@ -1,0 +1,66 @@
+
+@font-face
+{
+	font-family:titlul;
+	src:url(fonts/Mechsuit.otf);
+}
+@font-face{
+
+	font-family:nav;
+	src:url(fonts/Motorblock.ttf);
+}
+@font-face{
+
+	font-family:postare;
+	src:url(fonts/Downlink.otf);
+
+}
+@font-face{
+	font-family:membri;
+	src:url(fonts/Montalban.otf)
+}
+.body{
+	position:relative;
+	right:10px;
+	background:url(img/Bill1.jpg) no-repeat fixed;
+	background-size:100% 160%;
+
+}
+.bodyJason{
+	background:url(img/Jason1.jpg) no-repeat fixed;
+	background-size:100% 160%;
+}
+.bodyJeremy{
+	background:url(img/Jeremy1.jpg) no-repeat fixed;
+	background-size:100% 160%;
+}
+.bodyJared{
+	background:url(img/Jared2.jpg) no-repeat fixed;
+	background-size:100% 160%;
+}
+.nav-bio{
+	position:absolute;
+	top:0px;
+
+}
+.bio-logged{
+  top:60px;
+}
+.descriere{
+	position:relative;
+	font-family:postare;
+	display:flex;
+	justify-content:flex-end;
+	flex-direction:column;
+	top:120px;
+  left:60%;
+	width:40%;
+	color:white;
+
+}
+.titlu2{
+	width:60%;
+	position:relative;
+
+	margin:10px;
+}
