@@ -31,7 +31,8 @@ var useri=[];
 
 
 fs.readdir('./uploads',function(err,files){
-    num_poze=files.length;
+	if(files)
+		num_poze=files.length;
     console.log("numar poze:"+num_poze);
 });
 
