@@ -4,7 +4,7 @@
   "description": "O app",
   "main": "proiect.js",
   "scripts": {
-    "start:node proiect"
+    "start:node proiect",
     "test": "nushmen"
   },
   "author": "",
