@@ -58,7 +58,7 @@ app.get('/:page',function(req,res,next){
 
 
 
-app.get('/login',function(req,res){
+app.post('/login',function(req,res){
 	var i=0;
 	sess=req.session;
 	sess.sem=0;
