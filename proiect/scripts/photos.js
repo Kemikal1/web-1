@@ -113,7 +113,7 @@ $(document).ready(function(){
       index_min=i;
     }
   }
-  var photo_url="uploads/"+photo_numbers+".jpg";
+  var photo_url=photo_numbers+".jpg";
   var $image=$("<img/>").attr({
               src:photo_url,
               width:"100%"
