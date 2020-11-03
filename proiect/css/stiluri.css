@@ -45,6 +45,15 @@ audio, embed {
 	top:10px;
 	overflow:hidden;
 }
+.mute{
+	
+	margin-top:10px;
+	
+	
+}
+.mute:hover{
+	cursor:pointer;
+}
 .imagine-post{
 
 
@@ -79,7 +88,7 @@ audio, embed {
 	margin-left: 100px;
     padding:6px;
     color:white;
-	border:3px solid rgb(210,160,80);
+	border:3px solid rgb(160,114,40);
 	background-size:100% 100%;
 }
 .post-about{

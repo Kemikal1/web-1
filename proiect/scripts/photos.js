@@ -93,22 +93,6 @@ $(document).ready(function(){
   console.log(2);
 	});
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   $.get("/photos-number",function(photos_nr){
 
    photo_numbers=photos_nr;

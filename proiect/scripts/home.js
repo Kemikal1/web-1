@@ -35,6 +35,10 @@ var session;
 $.get("/username",function(username){
 	var $logged=$("<div/>")
                           .addClass("logged bio-logged");
+	
+	var $mute=$("<div/>")
+						.addClass("log-button mute")
+						.html("Mute")
 
 	var $log_button=$("<a/>")
                             .attr("href","logout")
@@ -44,28 +48,31 @@ $.get("/username",function(username){
 	var $useri=$("<a/>")
                       .attr("href","useri")
                       .addClass("log-button")
-                      .html("Useri");
+                      .html("Users");
 
 	$("#nav").after($logged);
 	$($log_button).appendTo(".logged");
 	$($div).appendTo(".logged");
-  if(username!="Guest")
-    $($useri).appendTo(".logged");
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	if(username!="Guest")
+		$($useri).appendTo(".logged");
+	
+	$($mute).appendTo(".logged");
+	
+	
+	$('.logged').delegate(".mute","click",function(){
+		
+			if($(this).html()=="Mute"){
+				$(this).html("Unmute");
+				$('audio').prop("muted", true);
+			}
+			else{
+				$(this).html("Mute");
+				$('audio').prop("muted", false);
+			}
+			var mute=$(this).html();
+			$.get("/mute-change",function(){return 0;})
+			
+		});
 
 $("#nav a").mouseenter(function(){
 
@@ -73,7 +80,14 @@ $("#nav a").mouseenter(function(){
 	hover1.currentTime=0;
 	hover1.play();
 });
-
+$.get("/mute",function(res){
+		$(".mute").html(res);
+		if(res=="Mute")
+			$('audio').prop("muted", false);
+		else
+			$('audio').prop("muted", true);
+			
+	});
 
 });
 

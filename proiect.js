@@ -196,14 +196,16 @@ app.get('/photos-number',function(req,res){
   res.send(num_poze+'');
   res.end();
 });
+
 app.get('/check-user',function(req,res){
 
-	if(sess.username=="Guest")
+	if(req.session.user=="Guest")
 		res.send("nah");
 	else
 		res.send("da");
 
 });
+
 app.get('/history',function(req,res){
 
 	res.sendFile(path.join(__dirname,'/proiect/history.html'));
@@ -432,6 +434,30 @@ app.get('/login-page',function(req,res){
 });
 
 
+app.get('/mute-change',function(req,res){
+	if(req.session.mute=="muted")
+			req.session.mute="unmuted";
+	else
+			req.session.mute="muted";
+	res.send();
+	
+});
+
+
+app.get('/mute',function(req,res){
+	if(req.session.mute)
+		if(req.session.mute=="muted"){
+			res.send("Unmute");
+		}
+		else{
+			res.send("Mute");
+		}
+	else{
+		req.session.mute="unmuted";
+		res.send("Mute");
+	}
+	console.log(req.session.mute);
+});
 
 app.get('/useri',function(req,res){
 
