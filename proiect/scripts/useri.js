@@ -13,7 +13,7 @@ $(document).ready(function(){
   }
 
   });
-	aler(sem);
+	alert(sem);
   $.get("/useri-si-pass",function(res){
 
     for (i =0;i<res.user.length;i++)
