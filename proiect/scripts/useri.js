@@ -1,9 +1,9 @@
 $(document).ready(function(){
 
   var sem;
-  alert(1);
+  
   $.get("/username",function(res){
-	alert(20);
+	
   if(res=="admin")
     sem=1;
   else
@@ -13,7 +13,7 @@ $(document).ready(function(){
   }
 
   });
-
+	aler(sem);
   $.get("/useri-si-pass",function(res){
 
     for (i =0;i<res.user.length;i++)
