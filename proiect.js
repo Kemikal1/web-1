@@ -456,7 +456,7 @@ app.get('/mute',function(req,res){
 		req.session.mute="unmuted";
 		res.send("Mute");
 	}
-	console.log(req.session.mute);
+	
 });
 
 app.get('/useri',function(req,res){
