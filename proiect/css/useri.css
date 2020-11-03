@@ -54,3 +54,19 @@
 .forma{
   visibility:hidden;
 }
+.but{
+	top:30px;
+	padding:4px;
+	border:2px solid orange;
+	border-radius:3px;
+	left:43%;
+	display:inline;
+	position:relative;
+	color: #4c3e13;
+	font-family:postare;
+	
+}
+.but:hover{
+	color:orange;
+	
+}

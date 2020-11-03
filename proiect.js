@@ -9,7 +9,15 @@ const fileu=require('express-fileupload');
 const cors=require('cors');
 const _=require('lodash');
 const fs =require('fs');
+const passport=require('passport');
+const connectEnsureLogin = require('connect-ensure-login');
+const LocalStrategy = require('passport-local').Strategy;
 
+
+
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(express.static('proiect'));
 app.use(express.static('proiect/scripts'));
@@ -38,63 +46,111 @@ fs.readdir('./uploads',function(err,files){
 
 
 app.get('/',function(req,res,next){
+	//console.log("aaa");
+	if(req.session.passport || req.session.user=="Guest"){
+		res.redirect('/homepage');
 
-	res.redirect('/login');
-
+	}
+	else{
+		console.log("assafasf");
+		res.redirect('login.html');
+	}
 });
 
 
 app.get('/:page',function(req,res,next){
+		
+		if(req.params.page=="login")
+			next();
+		if(req.session.passport)
+			next();
+		else
+			if(req.session.user=="Guest")
+				next();
+			else
+				res.redirect("login.html");
+	
 
-   if(req.params.page!="username"){
-	if(s)
-		next();
-	if(s==0)
-		res.redirect("login.html");
-   }
-   else
-	   next();
+   
 });
 
+function initialize(){
+	
+	const auth = async(username,pass1,done)=>{
+		
+		s=0;
+		useri2();
+		pass2();
+		//console.log(username+pass1);
+		for(i=0;i<useri.length;i++)
+		{
+			
+				//console.log(useri[i]+pass[i]);
+
+				if(username==useri[i])
+				{
+					const user=useri[i];
+					s=s+1;
+					if(pass1==pass[i])
+					  s+=1;
+					break;
+
+			    }
 
 
-app.post('/login',function(req,res){
+		}
+		if(s==2)
+			return done(null,username);
+		else
+			return done(null,false)
+		
+		
+	}
+	passport.use(new LocalStrategy(auth))
+	passport.serializeUser(function(user,done){done(null,user)})
+	passport.deserializeUser(function(id,done){ 
+	for(i=0;i<useri.length;i++)
+		if(id==useri[i])
+			return done(null,useri[i])
+	})
+	
+}
+initialize();
+
+app.post('/login',check_auth,passport.authenticate('local',{
+	
+	
+	/*
 	var i=0;
 	sess=req.session;
 	sess.sem=0;
 	var username=req.body.username;
 	var pass1=req.body.password;
 	var but=req.body.value;
-	s=0;
-	sess.username=username;
-  useri2();
-  pass2();
-  console.log(username+pass1);
-	for(i=0;i<useri.length;i++)
-	{
-    console.log(useri[i]+pass[i]);
-
-		if(username==useri[i])
-		{
-			  s=s+1;
-        if(pass1==pass[i])
-          s+=1;
-        break;
-
-	  }
-
-
-	}
+	initialize(username,pass1);
+	
 
 
 
 	if(s==2)
+	{
+		
 		res.redirect('/homepage');
+		
+	}
 	else
 		res.redirect('login-error.html');
 
 	res.end();
-});
+	
+	*/
+	
+	successRedirect:'/homepage',
+	failureRedirect:'login-error.html'
+	
+	
+	
+}));
 
 
 app.post('/new-pic',function(req,res){
@@ -166,13 +222,14 @@ app.get('/tour_dates',function(req,res){
 
 });
 app.get('/homepage',function(req,res){
-	   sess=req.session;
+		/*
+		sess=req.session;
 	    if(s!=2)
 		{
 			res.redirect('login.html');
             res.end();
 		}
-		sess.sem+=1;
+		sess.sem+=1;*/
 		res.sendFile(path.join(__dirname,'/proiect/homepage.html'));
 
 
@@ -186,9 +243,8 @@ app.get('/bios',function(req,res){
 
 
 app.post('/guest',function(req,res){
-	sess=req.session;
-	sess.username="Guest";
-	s=2;
+
+	req.session.user="Guest";
 	res.redirect('/homepage');
 });
 
@@ -281,14 +337,21 @@ function pass2(){
 
     }
     pass.push(str);
-    //console.log(pass[0]);
-
+    
 
 
 }
 
-app.post('/sterge-user',function(req,res){
+function check_auth( req,res,next)
+{
+	if(req.isAuthenticated())
+		res.redirect("/homepage");
+	else
+		next();
+}
 
+app.post('/sterge-user',function(req,res){
+	//console.log("asfasf");
   var user_str=useri[0];
   var pass_str=pass[0];
   var s=0;
@@ -312,7 +375,7 @@ app.post('/sterge-user',function(req,res){
 app.post('/adauga-user',function(req,res){
 
   var s=1;
-  console.log(2);
+  //console.log(2);
   var user_str="";
   var pass_str="";
   for (i=0;i<useri.length;i++)
@@ -363,24 +426,32 @@ app.get('/useri-si-pass',function(req,res){
 
 
 
-
+app.get('/login-page',function(req,res){
+	
+	res.redirect()
+});
 
 
 
 app.get('/useri',function(req,res){
 
-  if(sess)
-    //if(sess.username=="admin")
-      res.sendFile(path.join(__dirname,'/proiect/useri.html'));
-    //else
-      //res.redirect('/homepage');
+	if(req.session.passport || req.session.user)
+		if(req.session.passport.user)
+		//if(sess.username=="admin")
+		  res.sendFile(path.join(__dirname,'/proiect/useri.html'));
+		else
+		  res.redirect('/homepage');
+	else
+		res.redirect("login.html");
 
 });
 app.get('/username',function(req,res)
 {
-	if(sess)
-	 res.send(sess.username);
-	else
-	 res.end();
+	if(req.session.passport)
+	 res.send(req.session.passport.user);
+	else{
+		req.session.user="Guest";
+		res.send("Guest");
+	}
 });
 app.listen(process.env.PORT || port, () => console.log(`listening on port ${port}!`));

@@ -6,7 +6,10 @@ $(document).ready(function(){
   if(res=="admin")
     sem=1;
   else
+  {
     sem=0;
+	$(".useri-text2").html("Users");
+  }
 
   });
 
@@ -41,13 +44,17 @@ $(document).ready(function(){
 
         if(sem==1)
         {
-          $cont.append($x_but);
-          $('.container').delegate(".x-but","click",function(){
-            var but_id=$(this).attr("id");
-            $.post("/sterge-user",{username:but_id},function(){return 0;});
+			
+			
+			$cont.append($x_but);
+			$('.container').delegate(".x-but","click",function(){
+				var but_id=$(this).attr("id");
+			
+			
+			$.post("/sterge-user",{username:but_id},function(){return 0;});
             location.reload(true);
-          });
-          $("form").css("visibility","visible");
+			});
+			$("form").css("visibility","visible");
 
         }
         $(".useri").append($cont);
@@ -56,6 +63,11 @@ $(document).ready(function(){
 
 
       }
+	  $('.container').delegate(".x-but","click",function(){
+			var but_id=$(this).attr("id");
+			$.post("/sterge-user",{username:but_id},function(){return 0;});
+            location.reload(true);
+		});
 
   });
 
