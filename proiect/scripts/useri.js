@@ -1,8 +1,9 @@
 $(document).ready(function(){
 
   var sem;
+  alert(1);
   $.get("/username",function(res){
-
+	alert(20);
   if(res=="admin")
     sem=1;
   else
